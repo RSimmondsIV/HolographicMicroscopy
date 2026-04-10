@@ -208,13 +208,13 @@ def main():
     # Known constants from HoloGen dataset generation
     # -------------------------
     lambda0_um = 0.532
-    n_medium = 1.333
+    n_medium = 1.4
     k = 2 * np.pi * n_medium / lambda0_um
 
     # -------------------------
     # Image path
     # -------------------------
-    image_path = "sample_00000_circle_hologram.png"
+    image_path = "testingimage.png"
 
     # -------------------------
     # Load image
