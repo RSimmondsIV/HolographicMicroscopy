@@ -117,7 +117,10 @@ def radial_profile_pixels(I, x0_px, y0_px, nbins=200):
 
 # -----------------------------
 # 6. Radial profile from SIMULATED image
-# -----------------------------
+# -----------------------
+
+
+#Add center finding function to look for intensity radially and center based on split difference of r.
 def radial_profile_model(I, X, Y, x0_um=0.0, y0_um=0.0, nbins=200):
     R = np.sqrt((X - x0_um)**2 + (Y - y0_um)**2)
 
@@ -207,14 +210,14 @@ def main():
     # -------------------------
     # Known constants from HoloGen dataset generation
     # -------------------------
-    lambda0_um = 0.532
+    lambda0_um = 0.632
     n_medium = 1.4
     k = 2 * np.pi * n_medium / lambda0_um
 
     # -------------------------
     # Image path
     # -------------------------
-    image_path = "testingimage.png"
+    image_path = "RealTestPicture.png"
 
     # -------------------------
     # Load image
@@ -241,7 +244,7 @@ def main():
     r_meas_px, profile_meas = radial_profile_pixels(I_meas, x0_px, y0_px, nbins=200)
 
     # HoloGen default pixel pitch from generate_dataset.py
-    pixel_size_um = 4.65
+    pixel_size_um = 0.065
     r_meas_um = r_meas_px * pixel_size_um
 
     # Smooth only the measured 1D radial profile
@@ -278,7 +281,7 @@ def main():
     # -------------------------
     # z search
     # -------------------------
-    z_values = np.linspace(17000.0, 23000.0, 200)
+    z_values = np.linspace(5.0, 30.0, 100)
 
     z_fit, err, best_profile, best_sigma = estimate_z_from_profile(
         r_meas=r_meas_fit,
